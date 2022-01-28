@@ -3,10 +3,12 @@ require('dotenv').config();
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
+const mongoose	  = require('mongoose');
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
+const stock				= require('./models/stockModel.js');
 
 const app = express();
 
@@ -16,6 +18,17 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Create mongodb database
+mongoose.connect('mongodb://localhost:27017/stockprice', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+db.on('error', (err) => console.error(err));
+db.once('open', () => console.log("Connected!"));
 
 //Index page (static HTML)
 app.route('/')
