@@ -4,12 +4,12 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
 const mongoose	  = require('mongoose');
+const chai		  = require('chai');
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 const stock				= require('./models/stockModel.js');
-const css				= require('./public/style.css')
 
 const app = express();
 

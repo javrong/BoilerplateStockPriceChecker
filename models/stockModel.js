@@ -14,4 +14,4 @@ const stockSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = stock;
+module.exports = stockSchema;
